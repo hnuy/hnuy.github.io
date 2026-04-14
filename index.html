@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prakrit Yoophoon — Portfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --dark: #0f172a;
+      --gray: #64748b;
+      --gray-light: #f1f5f9;
+      --border: #e2e8f0;
+      --white: #ffffff;
+      --accent: #0ea5e9;
+      --green: #16a34a;
+      --tag-bg: #dbeafe;
+      --tag-text: #1d4ed8;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ===== LAYOUT ===== */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 40px;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      padding-bottom: 28px;
+      border-bottom: 2px solid var(--primary);
+      margin-bottom: 32px;
+    }
+
+    .header-name {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .header-title {
+      font-size: 16px;
+      color: var(--primary);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .header-subtitle {
+      font-size: 13px;
+      color: var(--gray);
+      margin-top: 6px;
+    }
+
+    .header-contact {
+      text-align: right;
+      font-size: 12.5px;
+      color: var(--gray);
+      line-height: 2;
+    }
+
+    .header-contact a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    .contact-icon {
+      width: 14px;
+      height: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===== SECTIONS ===== */
+    .section {
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--primary);
+      margin-bottom: 14px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ===== SUMMARY ===== */
+    .summary {
+      font-size: 14px;
+      color: #334155;
+      line-height: 1.7;
+    }
+
+    /* ===== SKILLS ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .skill-group h4 {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11.5px;
+      font-weight: 500;
+    }
+
+    .tag.green {
+      background: #dcfce7;
+      color: var(--green);
+    }
+
+    .tag.purple {
+      background: #f3e8ff;
+      color: #7c3aed;
+    }
+
+    .tag.orange {
+      background: #fff7ed;
+      color: #ea580c;
+    }
+
+    .tag.gray {
+      background: var(--gray-light);
+      color: #475569;
+    }
+
+    /* ===== PROJECTS ===== */
+    .project {
+      margin-bottom: 20px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .project:last-child {
+      margin-bottom: 0;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 6px;
+    }
+
+    .project-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .project-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+      background: #dcfce7;
+      color: var(--green);
+    }
+
+    .project-badge.active {
+      background: #fef3c7;
+      color: #d97706;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: #475569;
+      margin-bottom: 8px;
+    }
+
+    .project-highlights {
+      list-style: none;
+      margin-bottom: 8px;
+    }
+
+    .project-highlights li {
+      font-size: 12.5px;
+      color: #334155;
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 2px;
+    }
+
+    .project-highlights li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 8px;
+    }
+
+    /* ===== EXPERIENCE ===== */
+    .exp-item {
+      margin-bottom: 16px;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    .exp-role {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .exp-period {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .exp-company {
+      font-size: 13px;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .exp-list {
+      list-style: none;
+      margin-top: 4px;
+    }
+
+    .exp-list li {
+      font-size: 12.5px;
+      color: #334155;
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 2px;
+    }
+
+    .exp-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--gray);
+      font-size: 10px;
+      top: 2px;
+    }
+
+    /* ===== STRENGTHS ===== */
+    .strengths-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .strength-card {
+      padding: 12px 14px;
+      background: var(--gray-light);
+      border-radius: 6px;
+    }
+
+    .strength-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 3px;
+    }
+
+    .strength-desc {
+      font-size: 11.5px;
+      color: var(--gray);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--gray);
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      body { font-size: 12px; }
+      .page { padding: 20px 24px; max-width: 100%; }
+      .project { break-inside: avoid; }
+      .section { break-inside: avoid; }
+      @page { margin: 15mm; size: A4; }
+    }
+
+    /* ===== PRINT BUTTON ===== */
+    .print-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.4);
+    }
+
+    .print-btn:hover { background: #1d4ed8; }
+
+    @media print { .print-btn { display: none; } }
+  </style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">Save as PDF</button>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <div class="header-name">Prakrit Yoophoon</div>
+      <div class="header-title">Full-Stack Developer</div>
+      <div class="header-subtitle">4–5 Years Experience &nbsp;|&nbsp; Enterprise Systems &nbsp;|&nbsp; Cloud & AI Integration</div>
+    </div>
+    <div class="header-contact">
+      <div class="contact-item">
+        <span>📧</span>
+        <a href="mailto:prakrit.software@gmail.com">prakrit.software@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span>💻</span>
+        <a href="https://github.com/hnuy">github.com/hnuy</a>
+      </div>
+      <div class="contact-item">
+        <span>💬</span>
+        <span>Line: hnuyza20075</span>
+      </div>
+      <div class="contact-item">
+        <span>📱</span>
+        <span>099-909-5881</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="section">
+    <div class="section-title">Professional Summary</div>
+    <div class="summary">
+      Full-Stack Developer with 4–5 years of hands-on experience designing and delivering enterprise-grade systems
+      including ERP, WMS, and HR platforms. Proficient in building end-to-end solutions from database architecture
+      to cloud deployment on AWS Lambda. Experienced in GraphQL API design, React/TypeScript frontends,
+      NestJS backends, and cross-platform mobile development with Flutter. Strong advocate for
+      Test-Driven Development and clean, maintainable architecture.
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section">
+    <div class="section-title">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Frontend</h4>
+        <div class="tags">
+          <span class="tag">React 18/19</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Flutter</span>
+          <span class="tag">TailwindCSS</span>
+          <span class="tag">Material-UI</span>
+          <span class="tag">Apollo Client</span>
+          <span class="tag">Radix UI</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Backend</h4>
+        <div class="tags">
+          <span class="tag green">Node.js</span>
+          <span class="tag green">NestJS</span>
+          <span class="tag green">GraphQL</span>
+          <span class="tag green">Express</span>
+          <span class="tag green">REST API</span>
+          <span class="tag green">JWT Auth</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Database & Cloud</h4>
+        <div class="tags">
+          <span class="tag orange">MySQL</span>
+          <span class="tag orange">Sequelize</span>
+          <span class="tag orange">AWS Lambda</span>
+          <span class="tag orange">AWS S3</span>
+          <span class="tag orange">AWS SAM</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Testing</h4>
+        <div class="tags">
+          <span class="tag purple">Jest</span>
+          <span class="tag purple">Vitest</span>
+          <span class="tag purple">Playwright</span>
+          <span class="tag purple">TDD</span>
+          <span class="tag purple">RTL</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>DevOps & Tools</h4>
+        <div class="tags">
+          <span class="tag gray">Jenkins CI/CD</span>
+          <span class="tag gray">Docker</span>
+          <span class="tag gray">Git</span>
+          <span class="tag gray">pnpm</span>
+          <span class="tag gray">Vite</span>
+          <span class="tag gray">esbuild</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Specialties</h4>
+        <div class="tags">
+          <span class="tag">ERP Systems</span>
+          <span class="tag">WMS</span>
+          <span class="tag">HR Platforms</span>
+          <span class="tag">AI Integration</span>
+          <span class="tag">OpenTelemetry</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section">
+    <div class="section-title">Work Experience</div>
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">Full-Stack Developer</div>
+        <div class="exp-period">2020 – Present</div>
+      </div>
+      <div class="exp-company">Bitsoft</div>
+      <ul class="exp-list">
+        <li>Designed and developed enterprise ERP system with React, TypeScript, GraphQL, and AWS Lambda serving real business operations</li>
+        <li>Built multi-platform HR system with NestJS backend, React web dashboard, and Flutter mobile app</li>
+        <li>Developed compliance-focused Warehouse Management System (WMS) for chemical and dangerous goods industries (DIW reporting)</li>
+        <li>Integrated AI capabilities (Google Generative AI) and real-time features (WebSocket, OCR, QR scanning) into production systems</li>
+        <li>Established CI/CD pipelines with Jenkins and maintained AWS serverless deployments across multiple projects</li>
+        <li>Designed and delivered TDD workshop for development teams (bilingual: Thai/English)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="section">
+    <div class="section-title">Featured Projects</div>
+
+    <div class="project">
+      <div class="project-header">
+        <div class="project-name">Enterprise ERP System</div>
+        <div class="project-badge active">Active</div>
+      </div>
+      <div class="project-desc">Full-stack ERP platform for enterprise business operations with AI and real-time capabilities</div>
+      <ul class="project-highlights">
+        <li>GraphQL API with Apollo Server + AWS Lambda serverless architecture</li>
+        <li>Real-time data via WebSocket (Socket.io), QR/Barcode scanning, OCR (Tesseract.js)</li>
+        <li>AI-powered features using Google Generative AI</li>
+        <li>Advanced reporting dashboards with ApexCharts and Highcharts</li>
+      </ul>
+      <div class="project-tech">
+        <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">GraphQL</span>
+        <span class="tag green">NestJS</span><span class="tag orange">MySQL</span>
+        <span class="tag orange">AWS Lambda</span><span class="tag">Material-UI</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-header">
+        <div class="project-name">Human Resources Platform</div>
+        <div class="project-badge">Completed</div>
+      </div>
+      <div class="project-desc">Multi-platform HR management system — web dashboard and mobile app with full HR lifecycle management</div>
+      <ul class="project-highlights">
+        <li>NestJS modular backend with Swagger documentation and JWT authentication</li>
+        <li>Flutter mobile app for iOS/Android with force-update mechanism</li>
+        <li>Google Sheets integration for reporting and data export</li>
+        <li>Leave management, payroll, performance reviews, and employee lifecycle tracking</li>
+      </ul>
+      <div class="project-tech">
+        <span class="tag green">NestJS</span><span class="tag">React 19</span>
+        <span class="tag">Flutter</span><span class="tag orange">MySQL</span>
+        <span class="tag orange">AWS SAM</span><span class="tag purple">Jest</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-header">
+        <div class="project-name">Warehouse Management System (WMS)</div>
+        <div class="project-badge active">Active</div>
+      </div>
+      <div class="project-desc">Compliance-focused WMS for Thailand's chemical and dangerous goods regulations (DIW)</div>
+      <ul class="project-highlights">
+        <li>Dangerous goods classification and DIW (Department of Industrial Works) compliance reporting</li>
+        <li>Role-based access control: Admin / Manager / Operator</li>
+        <li>Inbound/outbound logistics with master data management</li>
+        <li>Clean repository/service architecture with Zod validation</li>
+      </ul>
+      <div class="project-tech">
+        <span class="tag">React 19</span><span class="tag">TypeScript</span>
+        <span class="tag green">Express</span><span class="tag">Zustand</span>
+        <span class="tag">Zod</span><span class="tag">TailwindCSS</span><span class="tag">Radix UI</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-header">
+        <div class="project-name">Chess Tournament System (BBB-Chess)</div>
+        <div class="project-badge active">Active</div>
+      </div>
+      <div class="project-desc">Real-time chess tournament management platform with FIDE Swiss pairing algorithm</div>
+      <ul class="project-highlights">
+        <li>Swiss pairing algorithm with Buchholz scoring and bye management</li>
+        <li>Real-time updates via GraphQL subscriptions</li>
+        <li>Monorepo architecture with shared GraphQL types via code generation</li>
+        <li>OpenTelemetry distributed tracing for observability</li>
+      </ul>
+      <div class="project-tech">
+        <span class="tag">React</span><span class="tag">TypeScript</span>
+        <span class="tag green">GraphQL</span><span class="tag green">Apollo</span>
+        <span class="tag orange">MySQL</span><span class="tag orange">AWS Lambda</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STRENGTHS -->
+  <div class="section">
+    <div class="section-title">Key Strengths</div>
+    <div class="strengths-grid">
+      <div class="strength-card">
+        <div class="strength-title">Enterprise Domain Knowledge</div>
+        <div class="strength-desc">Deep experience in ERP, WMS, and HR systems — understands business logic, not just code</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-title">End-to-End Delivery</div>
+        <div class="strength-desc">Handles full project lifecycle: DB design → API → UI → cloud deployment → CI/CD</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-title">Testing Culture</div>
+        <div class="strength-desc">Practices TDD, writes unit/integration/E2E tests, and teaches testing to other developers</div>
+      </div>
+      <div class="strength-card">
+        <div class="strength-title">Modern Stack Expertise</div>
+        <div class="strength-desc">Consistent use of TypeScript, GraphQL, AWS serverless, and AI integration across all projects</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>Prakrit Yoophoon &nbsp;|&nbsp; Full-Stack Developer &nbsp;|&nbsp; Available for Freelance</div>
+    <div>prakrit.software@gmail.com &nbsp;|&nbsp; 099-909-5881</div>
+  </div>
+
+</div>
+</body>
+</html>
