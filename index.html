@@ -361,11 +361,28 @@
 
     .print-btn:hover { background: #1d4ed8; }
 
-    @media print { .print-btn { display: none; } }
+    .lang-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 170px;
+      background: var(--white);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 11px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .lang-btn:hover { background: var(--primary-light); }
+
+    @media print { .print-btn, .lang-btn { display: none; } }
   </style>
 </head>
 <body>
 
+<a class="lang-btn" href="th.html" hreflang="th">ภาษาไทย</a>
 <button class="print-btn" onclick="window.print()">Save as PDF</button>
 
 <div class="page">
